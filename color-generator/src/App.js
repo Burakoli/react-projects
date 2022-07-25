@@ -3,14 +3,14 @@ import './App.css';
 
 function App() {
   const [boxes, setBoxes] = useState ([{ bg: "#" + ((Math.random() * 0xffffff) << 0).toString(16) }]);
-  
+
   useEffect(() => {
-    
+    if (boxes.length < 451) {
     const interval = setInterval (() => {
       setBoxes([...boxes, { bg: "#" + ((Math.random() * 0xffffff) << 0).toString(16) }]);
-    }, 100);
+    }, 25);
     return () => clearInterval(interval);
-  
+    }
   }, [boxes]);
 
   return (
