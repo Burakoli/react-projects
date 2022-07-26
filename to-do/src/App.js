@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import Form from './Form';
+import TodoItem from './TodoItem';
 import './App.css';
 
 function App() {
+  const [inputValue, setInputValue] = useState('');
+  const [todos, setTodos] = useState([]);
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setErrorMsg("");
+    if (inputValue.trim() === ""){
+      setErrorMsg("To-do can't be empty, please add a to-do.");
+      return;
+    }
+    setTodos([...todos, {todoText: inputValue, todoId: uuidv4() }])
+    setInputValue("");
+  };
+
+  const removeTodo = (id) => {
+    setTodos(todos.filter((todoItem) => todoItem.todoId !== id))
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='container'>
+        <Form handleSubmit={handleSubmit} inputValue={inputValue} setInputValue={setInputValue} />
+        <p className='errorMsg'>{errorMsg}</p>
+        <TodoItem removeTodo={removeTodo} todos={todos} />
+      </div>
     </div>
   );
 }
