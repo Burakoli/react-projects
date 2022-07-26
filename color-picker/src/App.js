@@ -1,13 +1,28 @@
-import React, { } from 'react';
-import { SketchPicker } from 'react-color';
+import React, { useState } from 'react';
+import { ChromePicker } from 'react-color';
 import './App.css';
 
 function App() {
+  const [color, setColor] = useState("lightblue");
+  const [hidden, setHidden] = useState(false);
+
+  const pickerStyles = {
+    default: {
+      picker: {
+        position: 'absulute',
+        bottom: "30px",
+        left: "100px"
+      }
+    }
+  };
+  
   return (
-    <div className="App">
+    <div style={{ background: color }} className="App">
       <div className='container'>
-        <SketchPicker />
-        <button>Open color picker</button>
+        <button onClick={() => setHidden(!hidden)}>{hidden ? 'Close color picker' : 'Open color picker'}</button>
+        {hidden && (
+        <ChromePicker styles={pickerStyles} color={color} onChange={(updatedColor) => setColor(updatedColor.hex)} />
+        )}
       </div>
     </div>
   );
