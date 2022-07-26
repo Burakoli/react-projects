@@ -1,10 +1,10 @@
 import React from "react";
 
-const Form = () => {
+const Form = ({ inputValue, setInputValue, handleSubmit }) => {
     
     return(
-        <form>
-            <input type="text" placeholder="Add to-do..." />
+        <form onSubmit={handleSubmit}>
+            <input value={inputValue} onChange={e => setInputValue(e.target.value)} type="text" placeholder="Add to-do..." />
             <button type="submit">Add to-do</button>
         </form>
     );
