@@ -1,5 +1,5 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+/** @jsxImportSource @emotion/react */
+import { css, jsx } from "@emotion/react";
 import WeatherImg from '../img/bg.jpg'
 
 const WeatherBg = () => <div css={styles} className="weatherBg"></div>
