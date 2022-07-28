@@ -1,13 +1,13 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+/** @jsxImportSource @emotion/react */
+import { css, jsx } from "@emotion/react";
 import WeatherBg from "./WeatherBg";
 import WeatherInfo from "./WeatherInfo";
 
-const WeatherCard = () => {
+const WeatherCard = ({ search, setSearch, getData, weatherData, error }) => {
     return(
         <div css={styles} className="card">
             <WeatherBg />
-            <WeatherInfo />
+            <WeatherInfo  weatherData={weatherData} error={error} search={search} setSearch={setSearch} getData={getData} />
         </div>
     );
 };
@@ -17,7 +17,7 @@ const styles = css`
     display: flex;
     border-radius: 5px;
     overflow: hidden;
-    @media(max-width: 1040px){
+    @media (max-width: 1040px) {
         flex-direction: column;
         align-items: center;
     }
