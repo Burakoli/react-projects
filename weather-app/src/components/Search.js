@@ -1,10 +1,16 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+/** @jsxImportSource @emotion/react */
+import { css, jsx } from "@emotion/react";
 
-const Search = () => {
+const Search = ({ search, setSearch, getData }) => {
     return(
-        <form>
-            <input autoFocus type="text" placeholder="Search for a city / country..."></input>
+        <form css={styles} onSubmit={getData}>
+            <input 
+            autoFocus 
+            type="text" 
+            placeholder="Search for a city / country..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            />
         </form>
     );
 };
@@ -18,6 +24,7 @@ const styles = css`
         outline: none;
         padding: 14px;
         color: #429ee7;
+        margin: 15px 0 0 0;
         &::placeholder {
             color: #429ee7;
         }
